@@ -1,0 +1,50 @@
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-color: var(--Very-Light-Gray);
+  color: var(--Super-Dark-Blue);
+}
+.inner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 4.2rem;
+
+ 
+
+}
+
+button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+li,
+a {
+  list-style-type: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+p {
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+fieldset {
+  border: none;
+}

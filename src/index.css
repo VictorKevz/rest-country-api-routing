@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+:root {
+  --Dark-Blue: hsl(209, 23%, 22%); /*(Dark Mode Elements)*/
+  --Very-Dark-Blue: hsl(207, 26%, 17%); /*(Dark Mode Background)*/
+  --Super-Dark-Blue: hsl(200, 15%, 8%); /*(Light Mode Text) */
+  --Dark-Gray: hsl(0, 0%, 52%); /* (Light Mode Input)*/
+  --Very-Light-Gray: hsl(0, 0%, 98%); /*(Light Mode Background) */
+  --White: hsl(0, 0%, 100%); /*(Dark Mode Text & Light Mode Elements) */
+
+  /* - Homepage Items: 14px
+- Detail Page: 16px  */
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito Sans", sans-serif;
+}
+html {
+  font-size: 10px;
+}
+body {
+  width: 100%;
+  color: var(--very-light-blue);
+  overflow-x: hidden;
+  
+}
+/* Dark Mode styles */
+.bg-dark{
+  background-color: var(--Very-Dark-Blue);
+  color: white;
+}
+.header-bg-dark{
+  background-color: var(--Dark-Blue);
+  box-shadow: 0 1rem 1rem -1rem hsla(208, 23%, 22%, 0.121);
+}
