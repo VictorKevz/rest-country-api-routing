@@ -35,3 +35,7 @@
 .theme-text.light{
     color: white;
 }
+a.active{
+    text-decoration: none;
+    color: inherit;
+}

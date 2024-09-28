@@ -6,6 +6,8 @@
     align-items: center;
     flex-direction: column;
     margin-top: 4.8rem;
+    padding: 0 3.2rem;
+
     
 }
 .filters-inner-container{
@@ -15,8 +17,19 @@
     align-items: center;   
 }
 
-.item{
-    background-color: brown;
-    height: 336px;
+.toggle-country-btn{
+    width: fit-content;
+    height: 5.6rem;
+    background-color: var(--Dark-Blue);
     border-radius: .64rem;
+    padding: 0 2rem;
+    color: white;
+    gap: .8rem;
+}
+.country-toggle-icon{
+    color: white;
+    background-color: var(--Dark-Gray);
+    padding: .5rem;
+    border-radius: 50%;
+    scale: 1.2;
 }

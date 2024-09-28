@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import Dropdown from "./Dropdown";
 import Country from "./Country";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import "../css/hero.css";
 
 function Hero() {
   const [countryData, setCountryData] = useState([]);
-  const[regions,setRegions] = useState([])
+  const [regions, setRegions] = useState([]);
   const [query, setQuery] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("All");
+  const [showAllCountries, setShowAllCountries] = useState(false);
 
   const getData = async () => {
     try {
@@ -24,8 +27,11 @@ function Hero() {
       setCountryData(data);
       setLoading(false);
 
-      const uniqueRegions = ["All", ...new Set(data.map((country)=> country.region))]
-      setRegions(uniqueRegions)
+      const uniqueRegions = [
+        "All",
+        ...new Set(data.map((country) => country.region)),
+      ];
+      setRegions(uniqueRegions);
     } catch (error) {
       setError(error.message);
       setLoading(false);
@@ -44,23 +50,46 @@ function Hero() {
       .toLowerCase()
       .includes(query.toLowerCase());
 
-      const matchesRegion = selectedRegion === "All" || country.region === selectedRegion;
+    const matchesRegion =
+      selectedRegion === "All" || country.region === selectedRegion;
 
-
-      return matchesQuery && matchesRegion
+    return matchesQuery && matchesRegion;
   });
-
+  const toggleCountries = () => {
+    setShowAllCountries(!showAllCountries);
+  };
+  const limitedCountries = filteredData.slice(0, 8);
+  const countriesToShow = showAllCountries ? filteredData : limitedCountries;
   return (
     <section className="hero-wrapper">
       <div className="filters-inner-container">
         <SearchBar query={query} setQuery={setQuery} />
-        <Dropdown selectedRegion={selectedRegion}setSelectedRegion={setSelectedRegion} regions={regions} />
+        <button
+          type="button"
+          className="toggle-country-btn"
+          onClick={toggleCountries}
+        >
+          {showAllCountries ? "Collapse Countries" : "Show All Countries"}
+          {showAllCountries ? (
+            <CloseFullscreenIcon
+              fontSize="large"
+              className="country-toggle-icon"
+            />
+          ) : (
+            <OpenInFullIcon fontSize="large" className="country-toggle-icon" />
+          )}
+        </button>
+        <Dropdown
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
+          regions={regions}
+        />
       </div>
 
       <section className="country-wrapper">
         {isLoading && <p>Fetching Data.....</p>}
         {error && <p>{`An error ocurred ${error}`}</p>}
-        {filteredData.map((country, i) => {
+        {countriesToShow.map((country, i) => {
           return <Country key={i} country={country} />;
         })}
       </section>

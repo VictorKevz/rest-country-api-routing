@@ -1,13 +1,16 @@
 import React from "react";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { NavLink } from "react-router-dom";
 import "../css/header.css";
 
 function Header({ onToggle, isDark }) {
   return (
     <header className={`header-wrapper ${isDark && "header-bg-dark"}`}>
       <nav className="nav-container">
+        <NavLink to="/">
         <h1 className="home-title">Where in the world?</h1>
+        </NavLink>
         <button className="theme-btn" type="button" onClick={onToggle}>
           {isDark ? (
             <LightModeIcon className="sun-icon" fontSize="large" />

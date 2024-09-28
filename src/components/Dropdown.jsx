@@ -4,7 +4,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 function Dropdown({ setSelectedRegion, selectedRegion,regions }) {
-  const [dropDownOpen, setDropDownOpen] = useState(true);
+  const [dropDownOpen, setDropDownOpen] = useState(false);
   
   const updateRegion = (region) => {
     setSelectedRegion(region);
