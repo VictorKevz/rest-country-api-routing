@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import "../css/detailsPage.css";
 
 function DetailsPage() {
-  const [country, setCountry] = useState(null); // Change to null to handle loading better
+  const [country, setCountry] = useState(null);
+  const [bordersData, setBordersData] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { cca3 } = useParams();
-
 
   const getCountry = async () => {
     try {
@@ -29,9 +29,32 @@ function DetailsPage() {
     }
   };
 
+  const getBorders = async (borders) => {
+    try {
+      const borderRequests = borders.map(async (border) => {
+        const response = await fetch(
+          `https://restcountries.com/v3.1/alpha/${border}`
+        );
+        return response.json();
+      });
+      const results = await Promise.all(borderRequests);
+      const neighboringCountries = results.map(
+        (result) => result[0].name.common
+      );
+      setBordersData(neighboringCountries);
+    } catch (error) {
+      setError("Failed to fetch neighboring countries.");
+    }
+  };
   useEffect(() => {
     getCountry();
   }, [cca3]);
+
+  useEffect(() => {
+    if (country && country.borders) {
+      getBorders(country.borders);
+    }
+  }, [country]);
 
   if (isLoading) {
     return <p>Fetching data......</p>;
@@ -44,32 +67,29 @@ function DetailsPage() {
   if (!country) {
     return <p>Loading.....</p>;
   }
-  if (!cca3) {
-    return <p>Undefined!</p>;
-  }
 
   // Check for nativeName to avoid errors
-  const nativeNamesObj = country.nativeName || {};
+  const nativeNamesObj = country.name.nativeName || {};
   const firstLanguageKey = Object.keys(nativeNamesObj)[0];
-  const nativeOfficialName =
-    firstLanguageKey && nativeNamesObj[firstLanguageKey].official;
+  const nativeOfficialName = nativeNamesObj[firstLanguageKey].official;
 
   // Optional chaining or default values for other fields
   const capital = country.capital ? country.capital[0] : "N/A";
   const tld = country.tld ? country.tld[0] : "N/A";
-  const currencies = country.currencies
-    ? Object.values(country.currencies)
-        .map((currency) => currency.name)
-        .join(", ")
-    : "N/A";
+
+  const currencyObj = country.currencies || {};
+  const firstCurrencyKey = Object.keys(currencyObj)[0];
+  const currency = currencyObj[firstCurrencyKey].name || "N/A";
+
+  const languagesList = Object.entries(country.languages);
 
   return (
-    
-      <section className="details-page-wrapper">
-        <Link to={"/"} type="button" className="back-btn">
-          <KeyboardBackspaceIcon fontSize="large"/> Back
+    <section className="details-page-wrapper">
+      <div className="details-inner">
+        <Link to={`/`} type="button" className="back-btn">
+          <KeyboardBackspaceIcon fontSize="large" /> Back
         </Link>
-        <div className="details-inner-page">
+        <div className="details-page-container">
           <img
             src={country.flags.svg}
             alt={`Flag of ${country.name.common}`}
@@ -83,7 +103,7 @@ function DetailsPage() {
                     {country.name.common}
                   </h1>
                 </li>
-                <li className="detail">
+                <li className="detail native">
                   Native Name:{" "}
                   <span className="value">{nativeOfficialName || "N/A"}</span>
                 </li>
@@ -104,20 +124,39 @@ function DetailsPage() {
               </ul>
               <ul className="minor-details-wrapper">
                 <li className="detail">
-                  Top Level Domain:{" "}
-                  <span className="value">{tld}</span>
+                  Top Level Domain: <span className="value">{tld}</span>
                 </li>
                 <li className="detail">
-                  Currencies:{" "}
-                  <span className="value">{currencies}</span>
+                  Currencies: <span className="value">{currency}</span>
                 </li>
-                {/* You can add other fields as needed */}
+                <ul className="currency-wrapper">
+                  <li className="detail">Languages: </li>
+                  {languagesList.map(([key, value]) => (
+                    <li
+                      key={key.toUpperCase()}
+                      className="value currency"
+                    >{`${value} ${languagesList.length > 1 && ","}`}</li>
+                  ))}
+                </ul>
               </ul>
             </article>
+            {bordersData && bordersData.length > 0 && (
+              <ul className="borders-wrapper">
+                <li className="detail">Border Countries: </li>
+                {bordersData.map((border, i) => {
+
+                  return (
+                    <li key={i} className="border-link-item">
+                      <Link to={`/details/${country.borders[i]}`}>{border}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
         </div>
-      </section>
-    
+      </div>
+    </section>
   );
 }
 
