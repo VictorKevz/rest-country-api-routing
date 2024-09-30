@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 // Components
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import DetailsPage from "./components/DetailsPage";
+
 
 // CSS.....
 import "./App.css";
@@ -23,7 +25,9 @@ function App() {
       <div className={`inner-container`}>
         <Header onToggle={toggleTheme} isDark={isDark} />
         <Routes>
-          <Route path="/" element={<Hero />} />
+        <Route path="/" element={<Hero />} />
+        <Route path="/details/:cca3" element={<DetailsPage />} />
+          
         </Routes>
       </div>
     </main>

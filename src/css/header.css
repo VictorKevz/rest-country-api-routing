@@ -35,7 +35,7 @@
 .theme-text.light{
     color: white;
 }
-a.active{
+.nav-link{
     text-decoration: none;
     color: inherit;
 }

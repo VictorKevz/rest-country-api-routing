@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import "../css/country.css"
 function Country({ country }) {
   return (
-    <div className="country-card">
+    <Link 
+    className="country-card"
+    to={`details/${country.cca3}`}
+    >
       <img
         src={country.flags.png}
         alt={`Flag of ${country.name.common}`}
@@ -12,17 +16,17 @@ function Country({ country }) {
         <h2 className="country-name">{country.name.common}</h2>
         <ul className="other-details">
           <li className="detail">
-            Population:<span className="value">{country.population}</span>
+            Population: <span className="value">{country.population}</span>
           </li>
           <li className="detail">
-            Region:<span className="value">{country.region}</span>
+            Region: <span className="value">{country.region}</span>
           </li>
           <li className="detail">
-            Capital:<span className="value">{country.capital[0]}</span>
+            Capital: <span className="value">{country.capital[0]}</span>
           </li>
         </ul>
       </article>
-    </div>
+    </Link>
   );
 }
 

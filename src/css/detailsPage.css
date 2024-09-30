@@ -1,0 +1,47 @@
+.details-page-wrapper {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  width: 100%;
+  align-items: flex-start;
+}
+.back-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: var(--Dark-Blue);
+    max-width: 136px;
+    width: 100%;
+    height: 4rem;
+    border-radius: .64rem;
+}
+.details-inner-page {
+    margin-top: 8rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.details-page-flag{
+    max-width: 560px;
+    height: auto;
+    width: 100%;
+}
+.text-wrapper{
+    max-width: 585px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.main-details-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.details-country-name{
+    margin-bottom: 3.4rem;
+}

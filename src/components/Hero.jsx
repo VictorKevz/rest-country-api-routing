@@ -18,7 +18,7 @@ function Hero() {
   const getData = async () => {
     try {
       const response = await fetch(
-        "https://restcountries.com/v3.1/all?fields=name&fields=population&fields=region&fields=capital&fields=flags"
+        "https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags,cca3"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data!");

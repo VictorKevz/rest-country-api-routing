@@ -8,7 +8,7 @@ function Header({ onToggle, isDark }) {
   return (
     <header className={`header-wrapper ${isDark && "header-bg-dark"}`}>
       <nav className="nav-container">
-        <NavLink to="/">
+        <NavLink to="/" className="nav-link">
         <h1 className="home-title">Where in the world?</h1>
         </NavLink>
         <button className="theme-btn" type="button" onClick={onToggle}>
