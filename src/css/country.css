@@ -12,9 +12,10 @@
   background-color: var(--White);
   box-shadow: 0 1rem 1rem -1rem #d0d0d0;
   border-radius: 0.64rem;
-  /* padding-bottom: 4.5rem; */
+  padding-bottom: 4.2rem;
   text-decoration: none;
   color: inherit;
+  min-height: fit-content;
 }
 
 .flag-img {
@@ -25,7 +26,6 @@
 .country-details {
   margin-top: 2.8rem;
   padding-left: 2.4rem;
-  padding-bottom: 4.2rem;
 }
 .country-name{
     font-weight: 700;

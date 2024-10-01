@@ -67,6 +67,10 @@ body {
     grid-template-columns: 1fr; 
     margin-top: 9rem;
   } 
+  .country-card {
+width: 85%;
+margin: 0 auto;
+  }
   .toggle-country-btn {
     position: absolute;
     bottom: 2rem;
