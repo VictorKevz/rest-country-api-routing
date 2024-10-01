@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 :root {
   --Dark-Blue: hsl(209, 23%, 22%); /*(Dark Mode Elements)*/
   --Very-Dark-Blue: hsl(207, 26%, 17%); /*(Dark Mode Background)*/
@@ -6,9 +6,6 @@
   --Dark-Gray: hsl(0, 0%, 52%); /* (Light Mode Input)*/
   --Very-Light-Gray: hsl(0, 0%, 98%); /*(Light Mode Background) */
   --White: hsl(0, 0%, 100%); /*(Dark Mode Text & Light Mode Elements) */
-
-  /* - Homepage Items: 14px
-- Detail Page: 16px  */
 }
 * {
   box-sizing: border-box;
@@ -23,33 +20,32 @@ body {
   width: 100%;
   color: var(--very-light-blue);
   overflow-x: hidden;
-  
 }
 /* Dark Mode styles */
-.bg-dark{
+.bg-dark {
   background-color: var(--Very-Dark-Blue);
   color: white;
 }
-.header-bg-dark{
+.header-bg-dark {
   background-color: var(--Dark-Blue);
   box-shadow: 0 1rem 1rem -1rem hsla(208, 23%, 22%, 0.121);
   color: white;
 }
-.text-dark-mode{
+.text-dark-mode {
   color: white;
 }
 /*RESPONSIVENESS */
 @media (width <= 1255px) {
-  .country-wrapper{
-    grid-template-columns: repeat(3,1fr); 
+  .country-wrapper {
+    grid-template-columns: repeat(3, 1fr);
   }
   .details-page-container {
     flex-direction: column;
   }
 }
 @media (width <= 1024px) {
-  .country-wrapper{
-    grid-template-columns: repeat(2,1fr); 
+  .country-wrapper {
+    grid-template-columns: repeat(2, 1fr);
   }
   .filters-inner-container {
     flex-direction: column;
@@ -63,13 +59,13 @@ body {
   }
 }
 @media (width <= 780px) {
-  .country-wrapper{
-    grid-template-columns: 1fr; 
+  .country-wrapper {
+    grid-template-columns: 1fr;
     margin-top: 9rem;
-  } 
+  }
   .country-card {
-width: 85%;
-margin: 0 auto;
+    width: 85%;
+    margin: 0 auto;
   }
   .toggle-country-btn {
     position: absolute;
@@ -79,13 +75,14 @@ margin: 0 auto;
     max-width: 100%;
     width: 100%;
   }
-  .dropDown-wrapper,.searchBar-wrapper{
+  .dropDown-wrapper,
+  .searchBar-wrapper {
     max-width: 100%;
     width: 100%;
   }
-  .home-title{
+  .home-title {
     font-size: 1.6rem;
-}
+  }
 }
 @media (width <= 640px) {
   .details-page-container {
@@ -94,7 +91,6 @@ margin: 0 auto;
   .main-details-wrapper {
     grid-template-columns: 1fr;
     gap: 8rem;
-
   }
   .borders-wrapper {
     flex-direction: column;
@@ -102,4 +98,3 @@ margin: 0 auto;
     flex-wrap: nowrap;
   }
 }
-
