@@ -25,8 +25,8 @@ function App() {
       <div className={`inner-container`}>
         <Header onToggle={toggleTheme} isDark={isDark} />
         <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/details/:cca3" element={<DetailsPage />} />
+        <Route path="/" element={<Hero isDark={isDark}/>} />
+        <Route path="/details/:cca3" element={<DetailsPage isDark={isDark}/>} />
           
         </Routes>
       </div>

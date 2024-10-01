@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../css/country.css"
-function Country({ country }) {
+function Country({ country,isDark }) {
   return (
     <Link 
-    className="country-card"
+    className={`country-card ${isDark && "header-bg-dark"}`}
     to={`details/${country.cca3}`}
     >
       <img

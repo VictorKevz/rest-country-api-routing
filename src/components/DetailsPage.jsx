@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import "../css/detailsPage.css";
+import { detailedPageVariants } from "../variants";
+import { motion,AnimatePresence } from "framer-motion";
 
-function DetailsPage() {
+function DetailsPage({isDark}) {
   const [country, setCountry] = useState(null);
   const [bordersData, setBordersData] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -71,7 +73,7 @@ function DetailsPage() {
   // Check for nativeName to avoid errors
   const nativeNamesObj = country.name.nativeName || {};
   const firstLanguageKey = Object.keys(nativeNamesObj)[0];
-  const nativeOfficialName = nativeNamesObj[firstLanguageKey].official;
+  const nativeOfficialName = country.name.nativeName && nativeNamesObj[firstLanguageKey].official;
 
   // Optional chaining or default values for other fields
   const capital = country.capital ? country.capital[0] : "N/A";
@@ -79,14 +81,21 @@ function DetailsPage() {
 
   const currencyObj = country.currencies || {};
   const firstCurrencyKey = Object.keys(currencyObj)[0];
-  const currency = currencyObj[firstCurrencyKey].name || "N/A";
+  const currency = country.currencies && currencyObj[firstCurrencyKey].name || "N/A";
 
-  const languagesList = Object.entries(country.languages);
+  const languagesList = country.languages && Object.entries(country.languages);
 
   return (
-    <section className="details-page-wrapper">
+    <AnimatePresence mode="wait">
+    <motion.section 
+    className="details-page-wrapper"
+    variants={detailedPageVariants}
+    initial="hidden"
+    animate="visible"
+    key={cca3}
+    >
       <div className="details-inner">
-        <Link to={`/`} type="button" className="back-btn">
+        <Link to={`/`} type="button" className={`back-btn ${isDark && "header-bg-dark"}`}>
           <KeyboardBackspaceIcon fontSize="large" /> Back
         </Link>
         <div className="details-page-container">
@@ -131,11 +140,11 @@ function DetailsPage() {
                 </li>
                 <ul className="currency-wrapper">
                   <li className="detail">Languages: </li>
-                  {languagesList.map(([key, value]) => (
+                  {languagesList && languagesList.map(([key, value]) => (
                     <li
                       key={key.toUpperCase()}
                       className="value currency"
-                    >{`${value} ${languagesList.length > 1 && ","}`}</li>
+                    >{`${value}${languagesList.length > 1 && ","}`}</li>
                   ))}
                 </ul>
               </ul>
@@ -146,7 +155,7 @@ function DetailsPage() {
                 {bordersData.map((border, i) => {
 
                   return (
-                    <li key={i} className="border-link-item">
+                    <li key={i} className={`border-link-item ${isDark && "header-bg-dark"}`}>
                       <Link to={`/details/${country.borders[i]}`}>{border}</Link>
                     </li>
                   );
@@ -156,7 +165,8 @@ function DetailsPage() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
+    </AnimatePresence>
   );
 }
 

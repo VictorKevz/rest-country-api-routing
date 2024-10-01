@@ -14,14 +14,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1.5rem;
 }
 .home-title{
-    /* color: var(--Super-Dark-Blue); */
     font-size: 2.5rem;
     font-weight: 800;
 }
 .theme-btn{
-    gap: 1rem;
+    gap: .5rem;
 }
 .sun-icon{
     color: white;

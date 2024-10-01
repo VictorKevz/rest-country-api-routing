@@ -6,7 +6,7 @@ import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import "../css/hero.css";
 
-function Hero() {
+function Hero({isDark}) {
   const [countryData, setCountryData] = useState([]);
   const [regions, setRegions] = useState([]);
   const [query, setQuery] = useState("");
@@ -63,10 +63,10 @@ function Hero() {
   return (
     <section className="hero-wrapper">
       <div className="filters-inner-container">
-        <SearchBar query={query} setQuery={setQuery} />
+        <SearchBar query={query} setQuery={setQuery} isDark={isDark} />
         <button
           type="button"
-          className="toggle-country-btn"
+          className={`toggle-country-btn ${isDark && "header-bg-dark"}`}
           onClick={toggleCountries}
         >
           {showAllCountries ? "Collapse Countries" : "Show All Countries"}
@@ -83,6 +83,7 @@ function Hero() {
           selectedRegion={selectedRegion}
           setSelectedRegion={setSelectedRegion}
           regions={regions}
+          isDark={isDark}
         />
       </div>
 
@@ -90,7 +91,7 @@ function Hero() {
         {isLoading && <p>Fetching Data.....</p>}
         {error && <p>{`An error ocurred ${error}`}</p>}
         {countriesToShow.map((country, i) => {
-          return <Country key={i} country={country} />;
+          return <Country key={i} country={country} isDark={isDark} />;
         })}
       </section>
     </section>
