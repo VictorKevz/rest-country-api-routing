@@ -52,3 +52,8 @@
   text-decoration: none;
   color: inherit;
 }
+.country-card:hover{
+  scale: 1.1;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}

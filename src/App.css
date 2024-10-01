@@ -53,3 +53,8 @@ p {
 fieldset {
   border: none;
 }
+button:hover,a:hover{
+  scale:1.1;
+  transition: .3s ease-in-out;
+
+}

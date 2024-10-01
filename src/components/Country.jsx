@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/country.css"
-function Country({ country,isDark }) {
+import { AnimatePresence, motion } from "framer-motion";
+import "../css/country.css";
+import { countryCardVariants } from "../variants";
+function Country({ country, isDark }) {
   return (
-    <Link 
-    className={`country-card ${isDark && "header-bg-dark"}`}
-    to={`details/${country.cca3}`}
+    <Link
+      className={`country-card ${isDark && "header-bg-dark"}`}
+      to={`details/${country.cca3}`}
     >
       <img
         src={country.flags.png}
