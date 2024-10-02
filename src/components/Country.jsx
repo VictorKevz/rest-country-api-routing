@@ -6,7 +6,7 @@ import { countryCardVariants } from "../variants";
 function Country({ country, isDark }) {
   return (
     <Link
-      className={`country-card ${isDark && "header-bg-dark"}`}
+      
       to={`details/${country.cca3}`}
     >
       <img

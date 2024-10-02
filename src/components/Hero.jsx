@@ -4,8 +4,8 @@ import Dropdown from "./Dropdown";
 import Country from "./Country";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
-import { AnimatePresence, motion } from "framer-motion";
-import { childVariants, countryCardVariants } from "../variants";
+import { motion } from "framer-motion";
+import { countryCardVariants } from "../variants";
 import "../css/hero.css";
 
 function Hero({ isDark }) {
@@ -89,28 +89,24 @@ function Hero({ isDark }) {
         />
       </div>
 
-      <motion.section
-        className="country-wrapper"
-        variants={countryCardVariants}
-        initial="hidden"
-        animate="visible"
-        key={countryData}
-      >
+      <section className="country-wrapper">
         {isLoading && <p>Fetching Data.....</p>}
         {error && <p>{`An error ocurred ${error}`}</p>}
         {countriesToShow.map((country, i) => {
           return (
-            <AnimatePresence mode="wait" key={i}>
-              <motion.div
-                variants={childVariants}
-                className={`country-card ${isDark && "header-bg-dark"}`}
-              >
-                <Country key={i} country={country} isDark={isDark} />
-              </motion.div>
-            </AnimatePresence>
+            <motion.div
+              key={i}
+              variants={countryCardVariants}
+              initial="hidden"
+              animate="visible"
+              custom={i}
+              className={`country-card ${isDark && "header-bg-dark"}`}
+            >
+              <Country key={i} country={country} isDark={isDark} />
+            </motion.div>
           );
         })}
-      </motion.section>
+      </section>
     </section>
   );
 }
