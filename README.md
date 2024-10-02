@@ -71,9 +71,9 @@ To run this project locally:
    ```
 4. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
-5. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
+5. Open [http://localhost:3000](http://localhost:5173) to view the app in your browser.
 
 ## Challenge Details
 
